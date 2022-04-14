@@ -54,15 +54,6 @@ const CancelButtonStyle = {
   },
 };
 
-const HideCancelButtonStyle = {
-  display: "none",
-  backgroundColor: "#f7f7f7",
-  color: "black",
-  "&:hover": {
-    backgroundColor: "#f7f7f7",
-  },
-};
-
 const Form = ({ formUserData, updateUserData }) => {
   const {
     register,
@@ -100,6 +91,7 @@ const Form = ({ formUserData, updateUserData }) => {
     <FormContainer onSubmit={handleSubmit(onSubmit)}>
       <Label>Name</Label>
       <Input
+        data-testid="name-input"
         type="text"
         placeholder="Enter name"
         defaultValue={formUserData?.name}
@@ -178,14 +170,18 @@ const Form = ({ formUserData, updateUserData }) => {
       />
 
       <Stack direction="row" justifyContent="flex-end" spacing={2}>
+        {cancelVisibility && (
+          <Button
+            data-testid="cancel-button"
+            sx={CancelButtonStyle}
+            onClick={onCancel}
+            variant="contained"
+          >
+            Cancel
+          </Button>
+        )}
         <Button
-          sx={cancelVisibility ? CancelButtonStyle : HideCancelButtonStyle}
-          onClick={onCancel}
-          variant="contained"
-        >
-          Cancel
-        </Button>
-        <Button
+          data-testid="save-button"
           sx={SaveButtonStyle}
           disabled={saveDisable}
           type="submit"

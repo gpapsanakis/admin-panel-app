@@ -21,7 +21,11 @@ const AlignItemsList = ({ userData, selectUser }) => {
   };
 
   return userData.map((item) => (
-    <List key={item.id} onClick={() => onClickUser(item.id)}>
+    <List
+      data-testid="list-item"
+      key={item.id}
+      onClick={() => onClickUser(item.id)}
+    >
       <ListItem
         alignItems="flex-start"
         selected={selectedIndex === item.id}

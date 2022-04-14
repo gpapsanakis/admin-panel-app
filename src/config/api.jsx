@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_PATH } from "./constants";
 
-export const fetchUsers = async () => {
+export const fetchUsers = () => {
   return axios({
     url: `${API_PATH}`,
     method: "get",
@@ -9,7 +9,7 @@ export const fetchUsers = async () => {
   });
 };
 
-export const updateUser = async (id, data) => {
+export const updateUser = (id, data) => {
   return axios({
     url: `${API_PATH}/${id}`,
     method: "put",

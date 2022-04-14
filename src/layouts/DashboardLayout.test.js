@@ -1,14 +1,18 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import DashboardLayout from "./DashboardLayout";
 
-const renderContent = () => {
-  return render(<DashboardLayout />);
-};
+
 
 describe("App <DashboardLayout /> component", () => {
-  it("should render DashboardLayout correctly", () => {
-    const { getByTestId } = renderContent();
-    // eslint-disable-next-line testing-library/prefer-screen-queries
-    expect(getByTestId("content-section")).toBeInTheDocument();
+  test("should render DashboardLayout correctly", () => {
+    render(<DashboardLayout />)
+    expect(screen.getByTestId("content-section")).toBeInTheDocument();
+  });
+
+  test('renders list items if request succeeds', async () => {
+    render(<DashboardLayout />)
+
+    const listItemElements = await screen.findAllByTestId("list-item");
+    expect(listItemElements).not.toHaveLength(0);
   });
 });
